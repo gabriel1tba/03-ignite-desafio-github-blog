@@ -2,6 +2,7 @@ import {
   forwardRef,
   ForwardRefRenderFunction,
   AnchorHTMLAttributes,
+  ElementType,
 } from 'react';
 import { IconType } from 'react-icons';
 import { LinkProps } from 'react-router-dom';
@@ -13,7 +14,7 @@ type CustomLinkTypes = AnchorHTMLAttributes<HTMLAnchorElement> | LinkProps;
 type CustomLinkProps = {
   rightIcon?: IconType;
   leftIcon?: IconType;
-  as?: React.ElementType;
+  as?: ElementType;
 } & CustomLinkTypes;
 
 const CustomLink: ForwardRefRenderFunction<CustomLinkTypes, CustomLinkProps> = (
