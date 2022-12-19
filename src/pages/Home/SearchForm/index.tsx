@@ -2,16 +2,17 @@ import * as S from './styles';
 
 interface SearchFormProps {
   numberPublications: number;
+  onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
 }
 
-const SearchForm = ({ numberPublications }: SearchFormProps) => {
+const SearchForm = ({ numberPublications, onSubmit }: SearchFormProps) => {
   return (
-    <S.Wrapper>
+    <S.Wrapper onSubmit={onSubmit}>
       <div>
         <h2>Publicações</h2>
         <p>{numberPublications} Publicações</p>
       </div>
-      <input placeholder='Buscar conteúdo' type='text' />
+      <input name='search' placeholder='Buscar conteúdo' type='text' />
     </S.Wrapper>
   );
 };
