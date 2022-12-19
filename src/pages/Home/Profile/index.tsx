@@ -5,7 +5,7 @@ import CustomLink from '../../../components/CustomLink';
 
 import * as S from './styles';
 
-export interface GithubUser {
+export type GithubUser = {
   name: string;
   avatar_url: string;
   bio: string;
@@ -13,7 +13,7 @@ export interface GithubUser {
   company: string;
   following: number;
   html_url: string;
-}
+};
 
 interface ProfileProps {
   githubUser: GithubUser;
