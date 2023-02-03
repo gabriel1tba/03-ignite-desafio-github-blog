@@ -1,4 +1,6 @@
-import { useState, useEffect, useCallback, FormEvent } from 'react';
+import { useState, useEffect, useCallback } from 'react';
+import { MoonLoader } from 'react-spinners';
+
 import api from '../../services/api';
 
 import Profile, { GithubUser } from './Profile';
@@ -20,16 +22,19 @@ type RepositoryIssue = {
 };
 
 const Home = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const [githubUser, setGithubUser] = useState({} as GithubUser);
   const [repositoryIssues, setRepositoryIssues] = useState<RepositoryIssue[]>(
     []
   );
 
   useEffect(() => {
-    const userPromise = api.get<GithubUser>('/users/gabrielitba');
+    const userPromise = api.get<GithubUser>('/users/react-hook-form');
     const repositoryIssuesPromise = api.get<{ items: RepositoryIssue[] }>(
-      `search/issues?q=""%20repo:gabrielitba/gitsearch`
+      `search/issues?q=""%20repo:react-hook-form/react-hook-form`
     );
+
+    setIsLoading(true);
 
     Promise.all([userPromise, repositoryIssuesPromise])
       .then(([userResponse, repositoryIssuesResponse]) => {
@@ -38,6 +43,9 @@ const Home = () => {
       })
       .catch((error) => {
         console.log(error);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }, []);
 
@@ -63,23 +71,36 @@ const Home = () => {
 
   return (
     <S.Wrapper>
-      <Profile githubUser={githubUser} />
-      <SearchForm
-        onSubmit={handleSubmit}
-        numberPublications={repositoryIssues.length}
-      />
+      {isLoading ? (
+        <section
+          style={{
+            marginTop: '4.5rem',
+          }}
+        >
+          <MoonLoader color="#fff" size={80} />
+        </section>
+      ) : (
+        <>
+          <Profile githubUser={githubUser} />
+          <SearchForm
+            onSubmit={handleSubmit}
+            numberPublications={repositoryIssues.length}
+          />
 
-      <S.CardList>
-        {Boolean(repositoryIssues.length) &&
-          repositoryIssues.map((issue) => (
-            <Card
-              key={issue.number}
-              title={issue.title}
-              created_at={issue.created_at}
-              body={issue.body}
-            />
-          ))}
-      </S.CardList>
+          <S.CardList>
+            {Boolean(repositoryIssues.length) &&
+              repositoryIssues.map((issue) => (
+                <Card
+                  key={issue.number}
+                  id={issue.number}
+                  title={issue.title}
+                  created_at={issue.created_at}
+                  body={issue.body}
+                />
+              ))}
+          </S.CardList>
+        </>
+      )}
     </S.Wrapper>
   );
 };

@@ -4,13 +4,14 @@ export const Wrapper = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 
   section {
     margin-top: -6rem;
   }
 
   form {
-    margin-bottom: 3rem;
+    margin: 4.5rem 0 3rem;
   }
 `;
 

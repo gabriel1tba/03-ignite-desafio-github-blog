@@ -12,7 +12,7 @@ const SearchForm = ({ numberPublications, onSubmit }: SearchFormProps) => {
         <h2>Publicações</h2>
         <p>{numberPublications} Publicações</p>
       </div>
-      <input name='search' placeholder='Buscar conteúdo' type='text' />
+      <input name="search" placeholder="Buscar conteúdo" type="text" />
     </S.Wrapper>
   );
 };

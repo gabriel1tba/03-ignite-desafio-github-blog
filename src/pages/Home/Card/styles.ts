@@ -1,6 +1,7 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
+export const Wrapper = styled(Link)`
   display: grid;
   grid-template-columns: 1fr 53px;
   width: 26rem;
@@ -9,6 +10,14 @@ export const Wrapper = styled.div`
   border-radius: 10px;
   padding: 2rem;
   gap: 1rem;
+  border: 2px solid transparent;
+  transition: border-color 0.2s;
+  text-decoration: none;
+  cursor: pointer;
+
+  :hover {
+    border-color: ${({ theme }) => theme['base-label']};
+  }
 
   h2 {
     font-size: 1.25rem;

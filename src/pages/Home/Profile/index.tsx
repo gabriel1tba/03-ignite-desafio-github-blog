@@ -21,7 +21,7 @@ interface ProfileProps {
 
 const Profile = ({ githubUser }: ProfileProps) => (
   <S.Wrapper>
-    <img src='https://github.com/gabrielitba.png' />
+    <img src="https://avatars.githubusercontent.com/u/53986236?s=200&v=4" />
 
     <div>
       <h1>{githubUser.name}</h1>
@@ -48,10 +48,10 @@ const Profile = ({ githubUser }: ProfileProps) => (
     </div>
     <CustomLink
       href={githubUser.html_url}
-      target='_blank'
-      rel='noopener noreferrer'
+      target="_blank"
+      rel="noopener noreferrer"
       rightIcon={HiArrowTopRightOnSquare}
-      as='a'
+      as="a"
     >
       Github
     </CustomLink>

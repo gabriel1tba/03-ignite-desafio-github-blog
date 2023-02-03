@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.form`
   width: 54rem;
-  margin-top: 4.5rem;
 
   div {
     display: flex;
